@@ -1,17 +1,19 @@
 package list
 
-import listnode "go-playground/ListNode"
+import (
+	listnode "mohamed-Dhia/lru-cache/ListNode"
+)
 
 type List struct {
 	Head *listnode.ListNode
 	Tail *listnode.ListNode
 }
 
-func New ()*List {
+func New() *List {
 	return &List{}
 }
 
-func (l *List) Unshift(val interface{}) *listnode.ListNode {
+func (l *List) Unshift(val listnode.NodeVal) *listnode.ListNode {
 	if l.Head == nil && l.Tail == nil {
 		l.Head = listnode.New(val, nil, nil)
 		l.Tail = l.Head
@@ -22,7 +24,7 @@ func (l *List) Unshift(val interface{}) *listnode.ListNode {
 	return l.Head
 }
 
-func (l *List) Shift() interface{} {
+func (l *List) Shift() listnode.NodeVal {
 	if l.Head == nil && l.Tail == nil {
 		return nil
 	} else {
@@ -33,7 +35,7 @@ func (l *List) Shift() interface{} {
 	}
 }
 
-func (l *List) Push(val interface{}) *listnode.ListNode {
+func (l *List) Push(val listnode.NodeVal) *listnode.ListNode {
 	if l.Head == nil && l.Tail == nil {
 		l.Head = listnode.New(val, nil, nil)
 		l.Tail = l.Head
@@ -44,7 +46,7 @@ func (l *List) Push(val interface{}) *listnode.ListNode {
 	return l.Tail
 }
 
-func (l *List) Pop() interface{} {
+func (l *List) Pop() listnode.NodeVal {
 	if l.Head == nil && l.Tail == nil {
 		return nil
 	} else {
@@ -97,5 +99,4 @@ func (l *List) MoveToEnd(node *listnode.ListNode) {
 		node.Prev = l.Tail
 		l.Tail = node
 	}
-
 }

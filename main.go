@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	lrucache "go-playground/LRU-Cache"
+	lrucache "mohamed-Dhia/lru-cache/LRU-Cache"
 )
 
 func main() {
@@ -11,11 +11,18 @@ func main() {
 	cache.Set("item2", 2)
 	cache.Set("item3", 3)
 	cache.Set("item4", 4)
-
-	fmt.Println(cache.Get("item3"), 3)
-	fmt.Println(cache.Get("item2"), 2)
-	fmt.Println(cache.Get("item1"), nil)
+	var item int
+	var ok bool
+	item, ok = cache.Get("item3")
+	fmt.Println(item, ok, 3)
+	item, ok = cache.Get("item2")
+	fmt.Println(item, ok, 2)
+	item, ok = cache.Get("item1")
+	fmt.Println(item, ok, nil)
 	cache.Set("item5", 5)
 	cache.Set("item6", 6)
-
+	item, ok = cache.Get("item3")
+	fmt.Println(item, ok, nil)
+	item, ok = cache.Get("item4")
+	fmt.Println(item, ok, nil)
 }

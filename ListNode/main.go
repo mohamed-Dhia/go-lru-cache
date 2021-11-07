@@ -1,17 +1,19 @@
 package listnode
 
-type  NodeVal interface {
-	
+import "fmt"
+
+type NodeVal interface {
+	Key() string
 }
 
 type ListNode struct {
-	Val  *lrucacheitem.LRUCacheItem
+	Val  NodeVal
 	Prev *ListNode
 	Next *ListNode
 }
 
-func New(val *lrucacheitem.LRUCacheItem, prev, next *ListNode) *ListNode {
-	return &ListNode{ val,  prev,  next}
+func New(val NodeVal, prev, next *ListNode) *ListNode {
+	return &ListNode{val, prev, next}
 }
 
 func (l *ListNode) Delete() {
@@ -21,4 +23,8 @@ func (l *ListNode) Delete() {
 	if l.Next != nil {
 		l.Next.Prev = l.Prev
 	}
+}
+
+func (l *ListNode) String() string {
+	return fmt.Sprintf("{Val: %s, Prev: %s, Next: %s}", l.Val, l.Prev, l.Next)
 }
